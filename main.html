@@ -1,0 +1,54 @@
+<script>
+
+
+var data=[];
+var fathers=[];
+function push_data(i,  x){
+    if(i>=0 && i<data.length){
+        data.push(x);
+        fathers.push(i);
+    }
+    else{
+        alert("Stack "+i+" not found");
+    }
+}
+
+function pop_data(i){
+    if(i>=0 && i<data.length){
+        if(i==fathers[i]){
+            alert("Stack "+i+" is empty");
+            return 0;
+        }
+        var dad=fathers[fathers[i]];
+        var data_fathers=0;
+        if(dad==fathers[i]){
+            dad=data.length;
+        }
+        else{
+            data_fathers=data[fathers[i]];
+        }
+        data.push(data_fathers);
+        fathers.push(dad);
+        alert(data[i]);
+        return data[i];
+    }
+    else{
+        alert("Stack "+i+" not found");
+        return 0;
+    }
+}
+data.push(0);
+fathers.push(0);
+var l=prompt("gg");
+var d=l.split(" ");
+while(d[0]!=0){
+    if(d[0]==1){
+        push_data(d[1],d[2]);
+    }
+    if(d[0]==2){
+        pop_data(d[1]);
+    }
+    l=prompt("gg");
+    d=l.split(" ");
+}
+</script>
